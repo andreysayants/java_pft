@@ -17,3 +17,4 @@ public class Point {
   }
 
 }
+// test First-lesson checkout
