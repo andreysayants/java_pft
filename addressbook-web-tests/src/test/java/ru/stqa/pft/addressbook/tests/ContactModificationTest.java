@@ -2,6 +2,7 @@ package ru.stqa.pft.addressbook.tests;
 
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 /**
  * Created by andrey.sayants on 26.04.2016.
@@ -9,15 +10,43 @@ import ru.stqa.pft.addressbook.model.ContactData;
 public class ContactModificationTest extends TestBase {
 
   @Test
-  public void testContactModification () {
-    app.getNavigationHelper().gotoContactPage();
-    if (!app.getContactHelper().isThereContact()) {
-      app.getContactHelper().createContact(new ContactData("first1", null, null, "address1", "89111111111", "test1"), true);
-    }
-    app.getContactHelper().editContact();
-    app.getContactHelper().fillContactForm(new ContactData("first2", "last2", "company2", "address2", "89222222222", null), false);
-    app.getContactHelper().editSelectedContact();
-    app.getContactHelper().returnToHomePage();
-  }
+  public void testContactModification() {
 
+    app.getNavigationHelper().gotoGroupPage();
+    if (app.getGroupHelper().isThereGroup()) {
+      app.getNavigationHelper().gotoContactPage();
+      if (!app.getContactHelper().isThereContact()) {
+        app.getContactHelper().createContact(new ContactData("first1", null, null, "address1", "89111111111", "test1"), true);
+        app.getContactHelper().returnToHomePage();
+        app.getContactHelper().editContact();
+        app.getContactHelper().fillContactForm(new ContactData("first2", "last2", "company2", "address2", "89222222222", null), false);
+        app.getContactHelper().editSelectedContact();
+        app.getContactHelper().returnToHomePage();
+      } else {
+        app.getContactHelper().editContact();
+        app.getContactHelper().fillContactForm(new ContactData("first2", "last2", "company2", "address2", "89222222222", null), false);
+        app.getContactHelper().editSelectedContact();
+        app.getContactHelper().returnToHomePage();
+      }
+    } else {
+      app.getGroupHelper().CreateGroup(new GroupData("test1", null, null));
+      app.getContactHelper().returnToHomePage();
+      if (!app.getContactHelper().isThereContact()) {
+        app.getContactHelper().createContact(new ContactData("first1", null, null, "address1", "89111111111", "test1"), true);
+        app.getContactHelper().returnToHomePage();
+        app.getContactHelper().editContact();
+        app.getContactHelper().fillContactForm(new ContactData("first2", "last2", "company2", "address2", "89222222222", null), false);
+        app.getContactHelper().editSelectedContact();
+        app.getContactHelper().returnToHomePage();
+      } else {
+        app.getContactHelper().editContact();
+        app.getContactHelper().fillContactForm(new ContactData("first2", "last2", "company2", "address2", "89222222222", null), false);
+        app.getContactHelper().editSelectedContact();
+        app.getContactHelper().returnToHomePage();
+      }
+
+    }
+
+  }
 }
+
