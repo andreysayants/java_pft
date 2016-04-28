@@ -16,7 +16,7 @@ public class ContactModificationTest extends TestBase {
     if (app.getGroupHelper().isThereGroup()) {
       app.getNavigationHelper().gotoContactPage();
       if (!app.getContactHelper().isThereContact()) {
-        app.getContactHelper().createContact(new ContactData("first1", null, null, "address1", "89111111111", "test1"), true);
+        app.getContactHelper().createContact(new ContactData("first1", null, null, "address1", "89111111111", "test1"));
         app.getContactHelper().returnToHomePage();
         app.getContactHelper().editContact();
         app.getContactHelper().fillContactForm(new ContactData("first2", "last2", "company2", "address2", "89222222222", null), false);
@@ -32,7 +32,7 @@ public class ContactModificationTest extends TestBase {
       app.getGroupHelper().CreateGroup(new GroupData("test1", null, null));
       app.getContactHelper().returnToHomePage();
       if (!app.getContactHelper().isThereContact()) {
-        app.getContactHelper().createContact(new ContactData("first1", null, null, "address1", "89111111111", "test1"), true);
+        app.getContactHelper().createContact(new ContactData("first1", null, null, "address1", "89111111111", "test1"));
         app.getContactHelper().returnToHomePage();
         app.getContactHelper().editContact();
         app.getContactHelper().fillContactForm(new ContactData("first2", "last2", "company2", "address2", "89222222222", null), false);

@@ -10,11 +10,11 @@ public class ContactCreationTest extends TestBase {
   public void testContactCreation() {
     app.getNavigationHelper().gotoGroupPage();
     if (app.getGroupHelper().isThereGroup()) {
-      app.getContactHelper().createContact(new ContactData("first1", null, null, "address1", "89111111111", "test1"), true);
+      app.getContactHelper().createContact(new ContactData("first1", null, null, "address1", "89111111111", "test1"));
     } else {
       app.getGroupHelper().CreateGroup(new GroupData("test1", null, null));
       app.getContactHelper().returnToHomePage();
-      app.getContactHelper().createContact(new ContactData("first1", null, null, "address1", "89111111111", "test1"), true);
+      app.getContactHelper().createContact(new ContactData("first1", null, null, "address1", "89111111111", "test1"));
     }
   }
 }
