@@ -21,12 +21,12 @@ public class ContactModificationTest extends TestBase {
       if (!app.getContactHelper().isThereContact()) {
         app.getContactHelper().createContact(creationContact);
         app.getContactHelper().returnToHomePage();
-        app.getContactHelper().editContact();
+        app.getContactHelper().editContact(0);
         app.getContactHelper().fillContactForm(fillingContact, false);
         app.getContactHelper().editSelectedContact();
         app.getContactHelper().returnToHomePage();
       } else {
-        app.getContactHelper().editContact();
+        app.getContactHelper().editContact(0);
         app.getContactHelper().fillContactForm(fillingContact, false);
         app.getContactHelper().editSelectedContact();
         app.getContactHelper().returnToHomePage();
@@ -37,12 +37,12 @@ public class ContactModificationTest extends TestBase {
       if (!app.getContactHelper().isThereContact()) {
         app.getContactHelper().createContact(creationContact);
         app.getContactHelper().returnToHomePage();
-        app.getContactHelper().editContact();
+        app.getContactHelper().editContact(0);
         app.getContactHelper().fillContactForm(fillingContact, false);
         app.getContactHelper().editSelectedContact();
         app.getContactHelper().returnToHomePage();
       } else {
-        app.getContactHelper().editContact();
+        app.getContactHelper().editContact(0);
         app.getContactHelper().fillContactForm(fillingContact, false);
         app.getContactHelper().editSelectedContact();
         app.getContactHelper().returnToHomePage();

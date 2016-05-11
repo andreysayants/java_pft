@@ -17,12 +17,12 @@ public class ContactDeletionTest extends TestBase {
       if (!app.getContactHelper().isThereContact()) {
         app.getContactHelper().createContact(contact);
         app.getContactHelper().returnToHomePage();
-        app.getContactHelper().editContact();
+        app.getContactHelper().editContact(before - 1);
         app.getContactHelper().deleteSelectedContact();
         app.getContactHelper().returnToHomePage();
         ;
       } else {
-        app.getContactHelper().editContact();
+        app.getContactHelper().editContact(before - 1);
         app.getContactHelper().deleteSelectedContact();
         app.getContactHelper().returnToHomePage();
       }
@@ -32,11 +32,11 @@ public class ContactDeletionTest extends TestBase {
       if (!app.getContactHelper().isThereContact()) {
         app.getContactHelper().createContact(contact);
         app.getContactHelper().returnToHomePage();
-        app.getContactHelper().editContact();
+        app.getContactHelper().editContact(before - 1);
         app.getContactHelper().deleteSelectedContact();
         app.getContactHelper().returnToHomePage();
       } else {
-        app.getContactHelper().editContact();
+        app.getContactHelper().editContact(before - 1);
         app.getContactHelper().deleteSelectedContact();
         app.getContactHelper().returnToHomePage();
       }
