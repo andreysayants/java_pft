@@ -1,5 +1,6 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
@@ -8,12 +9,13 @@ public class ContactDeletionTest extends TestBase {
 
   @Test
   public void testContactDeletion() {
-
+    ContactData contact = new ContactData("first1", null, null, "address1", "89111111111", "test1");
+    int before = app.getContactHelper().getContactCount();
     app.getNavigationHelper().gotoGroupPage();
     if (app.getGroupHelper().isThereGroup()) {
       app.getNavigationHelper().gotoContactPage();
       if (!app.getContactHelper().isThereContact()) {
-        app.getContactHelper().createContact(new ContactData("first1", null, null, "address1", "89111111111", "test1"));
+        app.getContactHelper().createContact(contact);
         app.getContactHelper().returnToHomePage();
         app.getContactHelper().editContact();
         app.getContactHelper().deleteSelectedContact();
@@ -28,7 +30,7 @@ public class ContactDeletionTest extends TestBase {
       app.getGroupHelper().CreateGroup(new GroupData("test1", null, null));
       app.getContactHelper().returnToHomePage();
       if (!app.getContactHelper().isThereContact()) {
-        app.getContactHelper().createContact(new ContactData("first1", null, null, "address1", "89111111111", "test1"));
+        app.getContactHelper().createContact(contact);
         app.getContactHelper().returnToHomePage();
         app.getContactHelper().editContact();
         app.getContactHelper().deleteSelectedContact();
@@ -40,7 +42,8 @@ public class ContactDeletionTest extends TestBase {
       }
 
     }
-
+    int after = app.getContactHelper().getContactCount();
+    Assert.assertEquals(after, before - 1);
   }
 
 }
