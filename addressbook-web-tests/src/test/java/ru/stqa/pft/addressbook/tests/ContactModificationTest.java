@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
 
-import java.util.HashSet;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -33,7 +33,10 @@ public class ContactModificationTest extends TestBase {
 
         before.remove(before.size() - 1);
         before.add(fillingContact1);
-        Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
+        Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
+        before.sort(byId);
+        after.sort(byId);
+        Assert.assertEquals(before, after);
       } else {
         List<ContactData> before = app.getContactHelper().getContactList();
         ContactData fillingContact2 = new ContactData(before.get(before.size() - 1).getId(),"first2", "last2", "company2", "address2", "89222222222", null);
@@ -46,7 +49,10 @@ public class ContactModificationTest extends TestBase {
 
         before.remove(before.size() - 1);
         before.add(fillingContact2);
-        Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
+        Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
+        before.sort(byId);
+        after.sort(byId);
+        Assert.assertEquals(before, after);
       }
     } else {
       app.getGroupHelper().CreateGroup(new GroupData("test1", null, null));
@@ -65,7 +71,10 @@ public class ContactModificationTest extends TestBase {
 
         before.remove(before.size() - 1);
         before.add(fillingContact3);
-        Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
+        Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
+        before.sort(byId);
+        after.sort(byId);
+        Assert.assertEquals(before, after);
       } else {
         List<ContactData> before = app.getContactHelper().getContactList();
         ContactData fillingContact4 = new ContactData(before.get(before.size() - 1).getId(),"first2", "last2", "company2", "address2", "89222222222", null);
@@ -78,7 +87,10 @@ public class ContactModificationTest extends TestBase {
 
         before.remove(before.size() - 1);
         before.add(fillingContact4);
-        Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
+        Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
+        before.sort(byId);
+        after.sort(byId);
+        Assert.assertEquals(before, after);
       }
 
     }
