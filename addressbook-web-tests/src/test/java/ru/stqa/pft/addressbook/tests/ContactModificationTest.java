@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
 
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ public class ContactModificationTest extends TestBase {
   @Test
   public void testContactModification() {
     ContactData creationContact = new ContactData("first1", null, null, "address1", "89111111111", "test1");
-    ContactData fillingContact = new ContactData("first2", "last2", "company2", "address2", "89222222222", null);
+    ContactData fillingContact1 = new ContactData("first2", "last2", "company2", "address2", "89222222222", null);
     app.getNavigationHelper().gotoGroupPage();
     if (app.getGroupHelper().isThereGroup()) {
       app.getNavigationHelper().gotoContactPage();
@@ -23,20 +24,25 @@ public class ContactModificationTest extends TestBase {
         app.getContactHelper().createContact(creationContact);
         app.getContactHelper().returnToHomePage();
         List<ContactData> before = app.getContactHelper().getContactList();
-        app.getContactHelper().editContact(0);
-        app.getContactHelper().fillContactForm(fillingContact, false);
+        app.getContactHelper().editContact(before.size() - 1);
+        app.getContactHelper().fillContactForm(fillingContact1, false);
         app.getContactHelper().editSelectedContact();
         app.getContactHelper().returnToHomePage();
         List<ContactData> after = app.getContactHelper().getContactList();
         Assert.assertEquals(after.size(), before.size());
       } else {
         List<ContactData> before = app.getContactHelper().getContactList();
-        app.getContactHelper().editContact(0);
-        app.getContactHelper().fillContactForm(fillingContact, false);
+        ContactData fillingContact2 = new ContactData(before.get(before.size() - 1).getId(),"first2", "last2", "company2", "address2", "89222222222", null);
+        app.getContactHelper().editContact(before.size() - 1);
+        app.getContactHelper().fillContactForm(fillingContact2, false);
         app.getContactHelper().editSelectedContact();
         app.getContactHelper().returnToHomePage();
         List<ContactData> after = app.getContactHelper().getContactList();
         Assert.assertEquals(after.size(), before.size());
+
+        before.remove(before.size() - 1);
+        before.add(fillingContact2);
+        Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
       }
     } else {
       app.getGroupHelper().CreateGroup(new GroupData("test1", null, null));
@@ -45,20 +51,25 @@ public class ContactModificationTest extends TestBase {
         app.getContactHelper().createContact(creationContact);
         app.getContactHelper().returnToHomePage();
         List<ContactData> before = app.getContactHelper().getContactList();
-        app.getContactHelper().editContact(0);
-        app.getContactHelper().fillContactForm(fillingContact, false);
+        app.getContactHelper().editContact(before.size() - 1);
+        app.getContactHelper().fillContactForm(fillingContact1, false);
         app.getContactHelper().editSelectedContact();
         app.getContactHelper().returnToHomePage();
         List<ContactData> after = app.getContactHelper().getContactList();
         Assert.assertEquals(after.size(), before.size());
       } else {
         List<ContactData> before = app.getContactHelper().getContactList();
-        app.getContactHelper().editContact(0);
-        app.getContactHelper().fillContactForm(fillingContact, false);
+        ContactData fillingContact2 = new ContactData(before.get(before.size() - 1).getId(),"first2", "last2", "company2", "address2", "89222222222", null);
+        app.getContactHelper().editContact(before.size() - 1);
+        app.getContactHelper().fillContactForm(fillingContact2, false);
         app.getContactHelper().editSelectedContact();
         app.getContactHelper().returnToHomePage();
         List<ContactData> after = app.getContactHelper().getContactList();
         Assert.assertEquals(after.size(), before.size());
+
+        before.remove(before.size() - 1);
+        before.add(fillingContact2);
+        Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
       }
 
     }
