@@ -16,7 +16,6 @@ public class ContactModificationTest extends TestBase {
   @Test
   public void testContactModification() {
     ContactData creationContact = new ContactData("first1", null, null, "address1", "89111111111", "test1");
-    ContactData fillingContact1 = new ContactData("first2", "last2", "company2", "address2", "89222222222", null);
     app.getNavigationHelper().gotoGroupPage();
     if (app.getGroupHelper().isThereGroup()) {
       app.getNavigationHelper().gotoContactPage();
@@ -24,12 +23,17 @@ public class ContactModificationTest extends TestBase {
         app.getContactHelper().createContact(creationContact);
         app.getContactHelper().returnToHomePage();
         List<ContactData> before = app.getContactHelper().getContactList();
+        ContactData fillingContact1 = new ContactData(before.get(before.size() - 1).getId(),"first2", "last2", "company2", "address2", "89222222222", null);
         app.getContactHelper().editContact(before.size() - 1);
         app.getContactHelper().fillContactForm(fillingContact1, false);
         app.getContactHelper().editSelectedContact();
         app.getContactHelper().returnToHomePage();
         List<ContactData> after = app.getContactHelper().getContactList();
         Assert.assertEquals(after.size(), before.size());
+
+        before.remove(before.size() - 1);
+        before.add(fillingContact1);
+        Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
       } else {
         List<ContactData> before = app.getContactHelper().getContactList();
         ContactData fillingContact2 = new ContactData(before.get(before.size() - 1).getId(),"first2", "last2", "company2", "address2", "89222222222", null);
@@ -51,24 +55,29 @@ public class ContactModificationTest extends TestBase {
         app.getContactHelper().createContact(creationContact);
         app.getContactHelper().returnToHomePage();
         List<ContactData> before = app.getContactHelper().getContactList();
+        ContactData fillingContact3 = new ContactData(before.get(before.size() - 1).getId(),"first2", "last2", "company2", "address2", "89222222222", null);
         app.getContactHelper().editContact(before.size() - 1);
-        app.getContactHelper().fillContactForm(fillingContact1, false);
-        app.getContactHelper().editSelectedContact();
-        app.getContactHelper().returnToHomePage();
-        List<ContactData> after = app.getContactHelper().getContactList();
-        Assert.assertEquals(after.size(), before.size());
-      } else {
-        List<ContactData> before = app.getContactHelper().getContactList();
-        ContactData fillingContact2 = new ContactData(before.get(before.size() - 1).getId(),"first2", "last2", "company2", "address2", "89222222222", null);
-        app.getContactHelper().editContact(before.size() - 1);
-        app.getContactHelper().fillContactForm(fillingContact2, false);
+        app.getContactHelper().fillContactForm(fillingContact3, false);
         app.getContactHelper().editSelectedContact();
         app.getContactHelper().returnToHomePage();
         List<ContactData> after = app.getContactHelper().getContactList();
         Assert.assertEquals(after.size(), before.size());
 
         before.remove(before.size() - 1);
-        before.add(fillingContact2);
+        before.add(fillingContact3);
+        Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
+      } else {
+        List<ContactData> before = app.getContactHelper().getContactList();
+        ContactData fillingContact4 = new ContactData(before.get(before.size() - 1).getId(),"first2", "last2", "company2", "address2", "89222222222", null);
+        app.getContactHelper().editContact(before.size() - 1);
+        app.getContactHelper().fillContactForm(fillingContact4, false);
+        app.getContactHelper().editSelectedContact();
+        app.getContactHelper().returnToHomePage();
+        List<ContactData> after = app.getContactHelper().getContactList();
+        Assert.assertEquals(after.size(), before.size());
+
+        before.remove(before.size() - 1);
+        before.add(fillingContact4);
         Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
       }
 
