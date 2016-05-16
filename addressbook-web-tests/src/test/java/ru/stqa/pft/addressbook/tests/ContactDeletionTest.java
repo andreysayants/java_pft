@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ContactDeletionTest extends TestBase {
 
-  @Test
+  @Test(enabled = false)
   public void testContactDeletion() {
     ContactData contact = new ContactData("first1", null, null, "address1", "89111111111", "test1");
     app.getNavigationHelper().gotoGroupPage();

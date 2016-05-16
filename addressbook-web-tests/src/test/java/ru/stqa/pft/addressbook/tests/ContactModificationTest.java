@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class ContactModificationTest extends TestBase {
 
-  @Test
+  @Test(enabled = false)
   public void testContactModification() {
     ContactData creationContact = new ContactData("first1", null, null, "address1", "89111111111", "test1");
     app.getNavigationHelper().gotoGroupPage();
