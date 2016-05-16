@@ -69,6 +69,13 @@ public class ContactHelper extends HelperBase {
     returnToHomePage();
   }
 
+  public void modifyContact(int index, ContactData fillingContact) {
+    editContact(index);
+    fillContactForm(fillingContact, false);
+    editSelectedContact();
+    returnToHomePage();
+  }
+
   public boolean isThereContact() {
     return isElementPresent(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
   }
