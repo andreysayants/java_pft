@@ -17,7 +17,7 @@ public class ContactModificationTest extends TestBase {
   @BeforeMethod
   public void ensurePreconditions() {
     app.goTo().GroupPage();
-    if (app.Group().List().size() == 0) {
+    if (app.Group().All().size() == 0) {
       app.Group().create(new GroupData().withName("test1"));
     }
     app.goTo().ContactPage();
