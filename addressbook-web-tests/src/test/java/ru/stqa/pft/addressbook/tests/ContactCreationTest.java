@@ -15,13 +15,14 @@ public class ContactCreationTest extends TestBase {
   public void ensurePreconditions() {
     app.goTo().GroupPage();
     if (app.Group().List().size() == 0) {
-      app.Group().create(new GroupData("test1", null, null));
+      app.Group().create(new GroupData().withName("test1"));
     }
   }
 
   @Test
   public void testContactCreation() {
-    ContactData contact = new ContactData("first1", "last2", null, "address1", "89111111111", "test1");
+    ContactData contact = new ContactData()
+            .withFirstname("first1").withLastname("last2").withAddress("address1").withMobile("89111111111").withGroup("test1");
     app.goTo().ContactPage();
     List<ContactData> before = app.Contact().List();
     app.Contact().create(contact);

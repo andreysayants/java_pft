@@ -14,11 +14,12 @@ public class ContactDeletionTest extends TestBase {
   public void ensurePreconditions() {
     app.goTo().GroupPage();
     if (app.Group().List().size() == 0) {
-      app.Group().create(new GroupData("test1", null, null));
+      app.Group().create(new GroupData().withName("test1"));
     }
     app.goTo().ContactPage();
     if (app.Contact().List().size() == 0) {
-      app.Contact().create(new ContactData("first1", null, null, "address1", "89111111111", "test1"));
+      app.Contact().create(new ContactData()
+              .withFirstname("first1").withAddress("address1").withMobile("89111111111").withGroup("test1"));
     }
   }
 

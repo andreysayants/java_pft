@@ -13,7 +13,7 @@ public class GroupCreationTest extends TestBase {
   public void testGroupCreation() {
     app.goTo().GroupPage();
     List<GroupData> before = app.Group().List();
-    GroupData group = new GroupData("test2", null, null);
+    GroupData group = new GroupData().withName("test2");
     app.Group().create(group);
     List<GroupData> after = app.Group().List();
     Assert.assertEquals(after.size(), before.size() + 1);
