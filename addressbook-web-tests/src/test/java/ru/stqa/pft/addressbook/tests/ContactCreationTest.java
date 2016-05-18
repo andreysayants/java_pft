@@ -22,7 +22,7 @@ public class ContactCreationTest extends TestBase {
   @Test
   public void testContactCreation() {
     ContactData contact = new ContactData()
-            .withFirstname("first1").withLastname("last2").withAddress("address1").withMobile("89111111111").withGroup("test1");
+            .withFirstname("first1").withLastname("last2").withAddress("address1").withMobilePhone("89111111111").withGroup("test1");
     app.goTo().ContactPage();
     Contacts before = app.Contact().All();
     app.Contact().create(contact);
