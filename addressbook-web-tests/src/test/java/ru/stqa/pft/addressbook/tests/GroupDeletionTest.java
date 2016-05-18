@@ -24,8 +24,8 @@ public class GroupDeletionTest extends TestBase {
     Groups before = app.Group().All();
     GroupData deletedGroup = before.iterator().next();
     app.Group().delete(deletedGroup);
+    assertThat(app.Group().Count(), equalTo(before.size() - 1));
     Groups after = app.Group().All();
-    assertEquals(after.size(), before.size() - 1);
     assertThat(after, equalTo(before.without(deletedGroup)));
   }
 }

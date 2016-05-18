@@ -15,10 +15,22 @@ public class GroupCreationTest extends TestBase {
     Groups before = app.Group().All();
     GroupData group = new GroupData().withName("test2");
     app.Group().create(group);
+    assertThat(app.Group().Count(), equalTo(before.size() + 1));
     Groups after = app.Group().All();
-    assertThat(after.size(), equalTo(before.size() + 1));
 
     assertThat(after, equalTo(
             before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
+  }
+
+  @Test
+  public void testBadGroupCreation() {
+    app.goTo().GroupPage();
+    Groups before = app.Group().All();
+    GroupData group = new GroupData().withName("test'");
+    app.Group().create(group);
+    assertThat(app.Group().Count(), equalTo(before.size()));
+    Groups after = app.Group().All();
+
+    assertThat(after, equalTo(before));
   }
 }

@@ -26,8 +26,8 @@ public class ContactCreationTest extends TestBase {
     app.goTo().ContactPage();
     Contacts before = app.Contact().All();
     app.Contact().create(contact);
+    assertThat(app.Contact().Count(), equalTo(before.size() + 1));
     Contacts after = app.Contact().All();
-    assertThat(after.size(), equalTo(before.size() + 1));
 
     assertThat(after, equalTo(
             before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
