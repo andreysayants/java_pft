@@ -11,6 +11,56 @@ public class ContactData {
   private String workPhone;
   private String group;
   private String allPhone;
+  private String addresses;
+  private String allEmails;
+  private String Email1;
+  private String Email2;
+  private String Email3;
+
+  public String getAllEmails() {
+    return allEmails;
+  }
+
+  public ContactData withAllEmails(String allEmails) {
+    this.allEmails = allEmails;
+    return this;
+  }
+
+  public String getEmail1() {
+    return Email1;
+  }
+
+  public ContactData withEmail1(String email1) {
+    Email1 = email1;
+    return this;
+  }
+
+  public String getEmail2() {
+    return Email2;
+  }
+
+  public ContactData withEmail2(String email2) {
+    Email2 = email2;
+    return this;
+  }
+
+  public String getEmail3() {
+    return Email3;
+  }
+
+  public ContactData withEmail3(String email3) {
+    Email3 = email3;
+    return this;
+  }
+
+  public String getAddresses() {
+    return addresses;
+  }
+
+  public ContactData withAddresses(String Addresses) {
+    this.addresses = Addresses;
+    return this;
+  }
 
   public String getAllPhone() {
     return allPhone;

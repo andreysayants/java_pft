@@ -104,9 +104,11 @@ public class ContactHelper extends HelperBase {
     for (WebElement element : elements) {
       String lastName = element.findElement(By.xpath(".//td[2]")).getText();
       String firstName = element.findElement(By.xpath(".//td[3]")).getText();
-      String allphones = element.findElement(By.xpath(".//td[6]")).getText();
+      String allPhones = element.findElement(By.xpath(".//td[6]")).getText();
+      String Addresses = element.findElement(By.xpath(".//td[4]")).getText();
+      String allEmails = element.findElement(By.xpath(".//td[5]")).getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
-      contactCache.add(new ContactData().withId(id).withFirstname(firstName).withLastname(lastName).withAllPhone(allphones));
+      contactCache.add(new ContactData().withId(id).withFirstname(firstName).withLastname(lastName).withAllPhone(allPhones).withAddresses(Addresses).withAllEmails(allEmails));
     }
     return new Contacts(contactCache);
   }
@@ -118,7 +120,13 @@ public class ContactHelper extends HelperBase {
     String home = wd.findElement(By.name("home")).getAttribute("value");
     String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
     String work = wd.findElement(By.name("work")).getAttribute("value");
+    String address = wd.findElement(By.name("address")).getAttribute("value");
+    String email1 = wd.findElement(By.name("email")).getAttribute("value");
+    String email2 = wd.findElement(By.name("email2")).getAttribute("value");
+    String email3 = wd.findElement(By.name("email3")).getAttribute("value");
     wd.navigate().back();
-    return new ContactData().withId(contact.getId()).withFirstname(firstName).withLastname(lastName).withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work);
+    return new ContactData().withId(contact.getId()).withFirstname(firstName).withLastname(lastName)
+            .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work)
+            .withAddress(address).withEmail1(email1).withEmail2(email2).withEmail3(email3);
   }
 }
