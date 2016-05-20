@@ -14,7 +14,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 /**
  * Created by andrey.sayants on 19.05.2016.
  */
-public class ContactDetailsInfo extends TestBase {
+public class ContactDetailsInfoTest extends TestBase {
   @BeforeMethod
   public void ensurePreconditions() {
     app.goTo().GroupPage();
@@ -36,16 +36,17 @@ public class ContactDetailsInfo extends TestBase {
     ContactData contactInfo = app.Contact().infoFromDetailsForm(contact);
 
     assertThat(cleaned(contactInfo.getInfo()), equalTo(mergeInfo(contactInfoFromEditForm)));
-    assertThat(mergeInfo(contactInfo), equalTo(mergeInfo(contactInfoFromEditForm)));
   }
 
   private String mergeInfo(ContactData contact) {
     return Arrays.asList(contact.getFirstname(), contact.getLastname(), contact.getCompany(), contact.getAddress(),
-            contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone(),
-            contact.getEmail1(), contact.getEmail2(), contact.getEmail3(), contact.getInfo())
+            ("H:" + contact.getHomePhone()), ("M:" + contact.getMobilePhone()), ("W:" + contact.getWorkPhone()),
+            (contact.getEmail1() + "(" + "www." + contact.getEmail1().split("@")[1] + ")"),
+            (contact.getEmail2() + "(" + "www." + contact.getEmail2().split("@")[1] + ")"),
+            (contact.getEmail3() + "(" + "www." + contact.getEmail3().split("@")[1] + ")"))
             .stream().filter((s) -> ! s.equals(""))
-            .map(ContactDetailsInfo::cleaned)
-            .collect(Collectors.joining("\n"));
+            .map(ContactDetailsInfoTest::cleaned)
+            .collect(Collectors.joining(""));
   }
 
   public static String cleaned(String clean) {

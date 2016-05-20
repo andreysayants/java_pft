@@ -119,8 +119,9 @@ public class ContactHelper extends HelperBase {
 
   public ContactData infoFromEditForm(ContactData contact) {
     editContactById(contact.getId());
-    String lastName = wd.findElement(By.name("firstname")).getAttribute("value");
-    String firstName = wd.findElement(By.name("lastname")).getAttribute("value");
+    String lastName = wd.findElement(By.name("lastname")).getAttribute("value");
+    String firstName = wd.findElement(By.name("firstname")).getAttribute("value");
+    String company = wd.findElement(By.name("company")).getAttribute("value");
     String home = wd.findElement(By.name("home")).getAttribute("value");
     String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
     String work = wd.findElement(By.name("work")).getAttribute("value");
@@ -129,9 +130,9 @@ public class ContactHelper extends HelperBase {
     String email2 = wd.findElement(By.name("email2")).getAttribute("value");
     String email3 = wd.findElement(By.name("email3")).getAttribute("value");
     wd.navigate().back();
-    return new ContactData().withId(contact.getId()).withFirstname(firstName).withLastname(lastName)
+    return new ContactData().withId(contact.getId()).withFirstname(firstName).withLastname(lastName).withCompany(company).withAddress(address)
             .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work)
-            .withAddress(address).withEmail1(email1).withEmail2(email2).withEmail3(email3);
+            .withEmail1(email1).withEmail2(email2).withEmail3(email3);
   }
 
   public ContactData infoFromDetailsForm(ContactData contact) {
