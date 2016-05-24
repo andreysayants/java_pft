@@ -43,8 +43,8 @@ public class ContactDetailsInfoTest extends TestBase {
             ("H:" + contact.getHomePhone()), ("M:" + contact.getMobilePhone()), ("W:" + contact.getWorkPhone()),
             (contact.getEmail1() + "(" + "www." + contact.getEmail1().split("@")[1] + ")"),
             (contact.getEmail2() + "(" + "www." + contact.getEmail2().split("@")[1] + ")"),
-            (contact.getEmail3() + "(" + "www." + contact.getEmail3().split("@")[1] + ")"))
-            .stream().filter((s) -> ! s.equals(""))
+            (contact.getEmail3() + "(" + "www." + contact.getEmail3().split("@")[1] + ")"), ("Memberof:test1,test1"))
+            .stream().filter((s) -> !(s == null || s.equals("")))
             .map(ContactDetailsInfoTest::cleaned)
             .collect(Collectors.joining(""));
   }

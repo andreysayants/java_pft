@@ -25,7 +25,9 @@ public class ContactCreationTest extends TestBase {
   public void testContactCreation() {
     File photo = new File("src/test/resources/stru.png");
     ContactData contact = new ContactData()
-            .withFirstname("first3").withLastname("last2").withAddress("address1").withMobilePhone("89111111111").withGroup("test1").withPhoto(photo);
+            .withFirstname("first3").withLastname("last2").withCompany("Company1").withAddress("address1")
+            .withHomePhone("798798984").withMobilePhone("89111111111").withWorkPhone("654556654")
+            .withEmail2("asdasd@mail.ru").withEmail3("asdsad@yandex.ru").withGroup("test1").withPhoto(photo);
     app.goTo().ContactPage();
     Contacts before = app.Contact().All();
     app.Contact().create(contact);
